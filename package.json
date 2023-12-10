@@ -4,8 +4,8 @@
   "description": "blog backend",
   "main": "index.ts",
   "scripts": {
-    "start": "env-cmd -f ./.env.develpoment node src/index.js",
-    "dev": "env-cmd -f ./.env.production node src/index.js ",
+    "start": "env-cmd -f ./.env.development node src/index.ts",
+    "prod": "env-cmd -f ./.env.production node src/index.ts ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
