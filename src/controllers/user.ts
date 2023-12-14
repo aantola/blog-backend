@@ -1,10 +1,10 @@
-
+import {Request, Response} from 'express';
 
 class UserController {
     // TODO: Fix add req return 
-    auth(){
+    auth(req : Request, res: Response){
         console.log('auth request')
-        return true
+        res.send('authorization adquired')
     }
 }
 
