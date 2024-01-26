@@ -9,9 +9,11 @@ const pool = new pg.Pool({
   ssl: !!process.env.DB_SSL,
 });
 
-const query = async (text: string) => {
+
+export const query = async (text : string, params : [string | number]) => {
+
   const start = Date.now()
-  const res = await pool.query(text)
+  const res = await pool.query(text, params)
   const duration = Date.now() - start
   console.log('executed query', { text, duration, rows: res.rowCount })
   return res
