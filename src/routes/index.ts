@@ -1,7 +1,8 @@
-import express from 'express' 
-import UserRouter from 'Routes/user'
-import AuthRouter from 'Routes/auth'
-import cors from 'cors'
+import express from 'express';
+import UserRouter from 'Routes/user';
+import cors from 'cors';
+import authMiddleware from 'Middleware/authMiddleware';
+import asyncMiddleware from 'Middleware/asyncMiddleware';
 
 let corsOptions = {
     origin: process.env.FRONTEND_URL,
@@ -11,7 +12,8 @@ let corsOptions = {
 let router = express.Router()
 
 router.use(cors(corsOptions))
-router.use('/auth', AuthRouter)
-router.use('/user', UserRouter)
+
+router.use('/user', asyncMiddleware(authMiddleware) ,UserRouter)
+
 
 export default router

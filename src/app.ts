@@ -2,18 +2,21 @@ import {config} from 'dotenv'
 config()
 import routes from 'Routes/index'
 import express from 'express' 
-import query from 'Models/DB'
+import errorHandleMiddleware from 'Middleware/errorHandleMiddleware'
 
 let app = express()
 
-app.use('/', routes)
 
-app.get('/ping', async (req, res) => {
-    const result = await query('SELECT NOW()')
-    console.log(result.rows)
-    return res.json(result.rows)
-} )
+app.use(express.json())
+app.use('/', (req,res, next) => {
+    Promise.resolve(next('route')).catch((error) => {
+        console.log("error catch")
+        next(error)
+    })
+    
+}, routes)
 
+app.use(errorHandleMiddleware)
 
 app.listen(10000, (): void => {
     console.log("Server listening on PORT", 10000);

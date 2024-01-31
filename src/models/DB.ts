@@ -1,6 +1,5 @@
 import pg from 'pg';
 
-console.log('Proc', process.env.DB_CONECTION_STRING)
 const pool = new pg.Pool({
   user: process.env.DB_USER,
   connectionString: process.env.DB_URL,
@@ -10,7 +9,7 @@ const pool = new pg.Pool({
 });
 
 
-export const query = async (text : string, params : [string | number]) => {
+export const query = async (text : string, params? : (string | number)[]) => {
 
   const start = Date.now()
   const res = await pool.query(text, params)
