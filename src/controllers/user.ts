@@ -4,7 +4,6 @@ import {getUser, createUser, deleteUser, userSchema} from 'Models/user';
 class UserController {
 
     async create(req: Request, res:Response){
-        console.log("create")
         let googleId = req.body.googleId
         let username = req.body.name
         if(googleId && username){
