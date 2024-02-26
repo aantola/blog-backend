@@ -2,6 +2,9 @@ CREATE table IF NOT EXISTS problem (
     id serial PRIMARY KEY,
     score integer NOT NULL,
     icon icon_name,
+    title text NOT NULL,
+    details text NOT NULL,
+    files text[],
     solution varchar(255) NOT NULL
 );
 

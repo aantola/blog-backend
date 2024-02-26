@@ -11,7 +11,6 @@ class UserController {
             const user = await createUser({username, googleId})
             res.send(JSON.stringify(user))
         } 
-        // throw Error("Invalid googleId" + googleId + " or username " + username )
     }
     async read(req : Request, res: Response){
         if(req.body.id){
@@ -28,7 +27,7 @@ class UserController {
         let googleId = req.body.googleId
         let id = req.body.id
         if(id && googleId){
-            let deleted = await deleteUser(parseInt(id), googleId)
+            const deleted = await deleteUser(parseInt(id), googleId)
             res.send(deleted)
         }  
         throw Error("User doesn't exist with id"+ id)

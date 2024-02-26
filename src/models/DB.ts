@@ -13,6 +13,7 @@ export const query = async (text : string, params? : (string | number)[]) => {
 
   const start = Date.now()
   const res = await pool.query(text, params)
+  // console.log("Query res:", res);
   const duration = Date.now() - start
   console.log('executed query', { text, duration, rows: res.rowCount })
   return res

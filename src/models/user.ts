@@ -9,7 +9,7 @@ export interface userSchema {
 }
 
 export async function getUser(id : string){
-    const res = await query("SELECT * FROM users WHERE googleId=$1", [id])
+    const res = await query("SELECT * FROM users WHERE googleId=$1;", [id])
     return res.rows[0]
 }
 
