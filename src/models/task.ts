@@ -32,6 +32,6 @@ export async function checkTask(taskId : number){
 
 export async function addSolvedUserTask(taskId : number, userId : number){
     const res = await query("INSERT INTO user_has_solves (problem_id, user_id) VALUES ($1, $2)", [taskId, userId]);
-    console.log("res:",res);
+    return res;
 }
 

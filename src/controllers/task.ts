@@ -12,10 +12,10 @@ class TaskController {
 
 
     async checkSolution(req: Request, res: Response){
-        let userId = req.body.googleId;
+        let userId = req.body.userId;
         let taskId = req.body.id;
         let answer = req.body.answer;
-        if(taskId && answer && userId){
+        if(taskId != undefined && answer != undefined && userId != undefined){
             let correctAnswer = await checkTask(taskId);
             console.log("Answer", correctAnswer);
             if(correctAnswer && correctAnswer == answer){
@@ -25,6 +25,8 @@ class TaskController {
                 res.status(200).send("WRONG");
             }
 
+        }else{
+            res.status(400).send(Error("An error has ocurred, missing data in request"))
         }
     }
 }
